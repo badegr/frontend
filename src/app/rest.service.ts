@@ -3,10 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginData } from './models/loginData';
 import { SearchResult } from './models/searchResult';
 import { History } from './models/history';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class RestService {
-  private _baseUrl = 'http://localhost:8080';
+  private _baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
 
