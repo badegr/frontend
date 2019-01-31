@@ -23,15 +23,22 @@ export class SearchComponent implements OnInit {
 
   onEnter(value: string) {
     this.searchValue = value;
-    this.restService.getGif(value).subscribe(value => this.success(value));
+    this.restService.getGif(value).subscribe(value => this.success(value,false));
   }
 
-  success(result: searchResult){
+  success(result: searchResult, isRandom: boolean){
     if(result != null){
       this.gif = result.url;
-      this.getHistory();
+      const item = new historyItem();
+      item.result = result;
+      item.isRandomSearch = isRandom;
+      item.requested = history.length + 1;
+      if(!isRandom){
+        item.text = this.searchValue;
+      }
+      this.history.push(item);
     } else {
-      this.restService.getGif(this.searchValue).subscribe(value => this.success(value));
+      this.restService.getGif(this.searchValue).subscribe(value => this.success(value,isRandom));
     }
   }
 
@@ -44,7 +51,7 @@ export class SearchComponent implements OnInit {
   }
 
   randomSearch(){
-    this.restService.getGifRandom().subscribe(value => this.success(value));
+    this.restService.getGifRandom().subscribe(value => this.success(value,true));
   }
 
   historyResult(history: history){
