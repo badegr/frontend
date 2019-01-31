@@ -1,44 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
-import { Router, ActivatedRoute, UrlSegment, NavigationEnd } from '@angular/router';
-import { searchResult } from '../models/searchResult';
-import { historyItem } from '../models/historyItem';
-import { history } from '../models/history';
+import { Router } from '@angular/router';
+import { SearchResult } from '../models/searchResult';
+import { HistoryItem } from '../models/historyItem';
+import { History } from '../models/history';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-
   searchValue = '';
   gif = '';
 
-  history: historyItem[];
+  history: HistoryItem[];
 
-  constructor(private restService: RestService, private router: Router){
-  
-  }
+  constructor(private restService: RestService, private router: Router) {}
 
   onEnter(value: string) {
     this.searchValue = value;
-    this.restService.getGif(value).subscribe(value => this.success(value,false));
+    this.restService.getGif(value).subscribe(v => this.success(v, false));
   }
 
-  success(result: searchResult, isRandom: boolean){
-    if(result != null){
+  success(result: SearchResult, isRandom: boolean) {
+    if (result != null) {
       this.gif = result.url;
-      const item = new historyItem();
+      const item = new HistoryItem();
       item.result = result;
       item.isRandomSearch = isRandom;
       item.requested = this.history.length + 1;
-      if(!isRandom){
+      if (!isRandom) {
         item.text = this.searchValue;
       }
       this.history.push(item);
     } else {
-      this.restService.getGif(this.searchValue).subscribe(value => this.success(value,isRandom));
+      this.restService
+        .getGif(this.searchValue)
+        .subscribe(value => this.success(value, isRandom));
     }
   }
 
@@ -46,25 +45,28 @@ export class SearchComponent implements OnInit {
     this.getHistory();
   }
 
-  getHistory(){
-    this.restService.getHistory().subscribe(reuslt => this.historyResult(reuslt));
+  getHistory() {
+    this.restService
+      .getHistory()
+      .subscribe(reuslt => this.historyResult(reuslt));
   }
 
-  randomSearch(){
-    this.restService.getGifRandom().subscribe(value => this.success(value,true));
+  randomSearch() {
+    this.restService
+      .getGifRandom()
+      .subscribe(value => this.success(value, true));
   }
 
-  historyResult(history: history){
-    if(history != null){
+  historyResult(history: History) {
+    if (history != null) {
       this.history = history.items;
     } else {
       this.history = [];
     }
   }
 
-  logout(){
+  logout() {
     this.restService.logout();
     this.router.navigateByUrl('');
   }
-
 }

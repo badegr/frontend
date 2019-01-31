@@ -6,10 +6,31 @@
   <form class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input [(ngModel)]="loginData.email" type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+    <input
+      [(ngModel)]="loginData.email"
+      type="email"
+      name="email"
+      id="email"
+      class="form-control input-sm"
+      placeholder="Email Address"
+    />
     <label for="inputPassword" class="sr-only">Password</label>
-    <input [(ngModel)]="loginData.pwd" type="password" name="pwd" id="inputPassword" class="form-control input-sm" placeholder="Password">
-    <button id="login" class="btn btn-lg btn-outline-secondary btn-block" type="submit" (click)="authUser()">Sign in</button>
+    <input
+      [(ngModel)]="loginData.pwd"
+      type="password"
+      name="pwd"
+      id="inputPassword"
+      class="form-control input-sm"
+      placeholder="Password"
+    />
+    <button
+      id="login"
+      class="btn btn-lg btn-outline-secondary btn-block"
+      type="submit"
+      (click)="authUser()"
+    >
+      Sign in
+    </button>
     <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
   </form>
 </div>

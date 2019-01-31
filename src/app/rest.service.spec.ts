@@ -5,7 +5,7 @@ import { RestService } from './rest.service';
 describe('RestService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RestService]
+      providers: [RestService],
     });
   });
 

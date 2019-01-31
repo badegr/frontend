@@ -1,5 +1,5 @@
-import { historyItem } from './historyItem';
+import { HistoryItem } from './historyItem';
 
-export class history{
-    items: historyItem[];
+export class History {
+  items: HistoryItem[];
 }

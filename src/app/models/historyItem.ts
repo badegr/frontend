@@ -1,8 +1,8 @@
-import { searchResult } from './searchResult';
+import { SearchResult } from './searchResult';
 
-export class historyItem{
-    text: string;
-    requested: number;
-    result: searchResult;
-    isRandomSearch: boolean
+export class HistoryItem {
+  text: string;
+  requested: number;
+  result: SearchResult;
+  isRandomSearch: boolean;
 }

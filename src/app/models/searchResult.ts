@@ -1,3 +1,3 @@
-export class searchResult{
-    url: string;
+export class SearchResult {
+  url: string;
 }
