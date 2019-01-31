@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
       const item = new historyItem();
       item.result = result;
       item.isRandomSearch = isRandom;
-      item.requested = history.length + 1;
+      item.requested = this.history.length + 1;
       if(!isRandom){
         item.text = this.searchValue;
       }
@@ -57,6 +57,8 @@ export class SearchComponent implements OnInit {
   historyResult(history: history){
     if(history != null){
       this.history = history.items;
+    } else {
+      this.history = [];
     }
   }
 

@@ -2,6 +2,10 @@
     max-width: 150px;
 }
 
+.imgFull{
+    max-height: 600px;
+}
+
 .logoutBt{
     color: white;
 }
